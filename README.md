@@ -49,3 +49,13 @@ Pour résoudre ce problème:
   -  indiquez "O" pour Oui et appuyez sur Entrée
 
 
+# Présentation de la Team
+L'équipe est composé de 5 étudiantes toutes en L3 Double Licence Science De la Vie - Informatique à l'Université d'Evry Val d'Essonne.
+
+Astrid WINKLER était chef de projet et principale développeuse pour la partie Connexion de l'application, mise en place de la base de donnée (BDD) MongoDB, lien entre la BDD et l'application et les modules "Saisie des Commandes" et "Administration du Référentiel".
+Jiou LEE était principalement testeuse mais à également beaucoup contribuée pour la conception des croquis de l'interface graphique et le codage du CSS de l'Application.
+Louise WEBER était testeuse, assurait l'assurance qualité (vis à vis du planning et du cahier des charges) et a également participé à une grande partie de l'interface graphique de l'application (CSS et croquis).
+Lucie GOMES était testeuse mais également développeuse sur le module "Saisie des Commandes", pour les fonctionnalités de Recherches dans le module "Administration du Référentiel" et le début du module "Gestion des Anomalies". 
+Marwa MOHAMED était développeuse sur une partie du module "Saisie des Commandes" mais surtout sur le module "Prospection".
+
+Le projet avait pour date butoir le 14/04/2021, à cette date là, le module "Gestion des Anomalies" n'était pas fonctionnel.
