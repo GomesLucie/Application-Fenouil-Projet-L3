@@ -4,18 +4,19 @@
         <div id="deroule_Menu" class="Contenu_Menu">
             <a href="/referentiel">Administration du référentiel</a>
             <a href="/commandes">Saisies des commandes</a>
-            <a href="/anomalies">Gestion des anomalies</a>
+            <a href="/rechercheAnomalies">Gestion des anomalies</a>
             <a href="/prospection">Prospection</a>
         </div>
     </div>
-    <a href="/acceuil"><img id="logo" src="Fenouille.png" alt="Logo Fenouil" ></a>
+    <a href="/acceuil"><img id="logo" src="../Logo_Fenouil.png" alt="Logo Fenouil" ></a>
     <h1 class="Titre"><%= title %></h1>
     <input class="Recherche" type="button" value="Recherche" onclick="location.href='/recherche';">
-    <input class="Identifiant" type="button" value="Déconnexion" onclick="location.href='/';">        
+    <form action="/logout?_method=DELETE" method="POST">
+      <button type="submit" class="Identifiant">Déconnexion</button>
+    </form>      
 </nav>
 
 <script>
-    const Menu = document.getElementsByClassName('Menu')
     function fonction_Menu(){
         document.getElementById("deroule_Menu").classList.toggle("show");
     }

@@ -4,29 +4,69 @@ const Schema = mongoose.Schema;
 
 const commandeSchema = new Schema({
     numCommande: {
-        type: String,
-        required: true
+         type: String,
     },
     client: {
-        // à mettre type object Individu
-        type: String,
+        type:mongoose.Schema.Types.ObjectId,
+        ref: 'Individu',
         required: true
     },
-    article: {
-        type: Number,
+    articles: {
+        type:mongoose.Schema.Types.Array,
+        ref: 'Article',
         required: true
     },
-    paiement: {
-        type: String,
+    quantite: {
+        type: Array,
         required: true
     },
-    date: {
+    pCheque: {
         type: String,
-        required: true,
+        //required: true
     },
+    pCarte: {
+        type: String,
+        //required: true
+    },
+    numeroCarte: {
+        type: String,
+    },
+    crypto:{
+        type:String,
+    },
+    dateExpiration: {
+        type: String,
+    },
+    titulaire:{
+        type:String,
+    },
+    numeroCheque: {
+        type: String,
+    },
+    banque: {
+        type: String,
+    },
+    signature:{
+        type:String,
+    },
+    etat: {
+        type: Array,
+        required: true
+    },
+    //valeur du moyen de paiement
+    valeur: {
+        type: Number
+        //required: True
+    },
+    //prix de l'ensemble des articles de la commande
+    prix:{
+        type: Number
+    },
+    verification: {
+        type: Boolean,
+        Default: false
+    }
     
-    
-
 }, { timestamps: true })
 
 const Commande = mongoose.model('Commande', commandeSchema);

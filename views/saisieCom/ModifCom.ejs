@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('../partials/head.ejs') %>
+
+<body>
+ 
+    <%- include('../partials/nav.ejs') %>
+
+    <%- include('../partials/barreSaisieCom.ejs') %>
+
+    <div class="page"  >
+        <form action="/modifCom" method="GET" id='choix'>
+            <label class='SearchCom'>Numéro commande</label>
+            <input class='SearchCom' type='text' name='numCommande' value="<%= searchOptions.numCommande %>">
+            <input class='SearchCom' type='submit' value='Rechercher'>
+        </form>
+        <div class="place">
+            <div class="titretab">
+                <p class="num">Numéro Commande</p>
+                <p>Date création</p>
+                <p>Client</p>
+                <p>Vérifier</p>
+            </div>
+        </div>
+        <div class="liste">
+            <% if (commandes.length > 0) { %>
+                <% commandes.forEach(commande => { %>
+                    <%if(!commande.verification) { %>
+                        <div class="single">
+                            <h3 class="numéro"><%= commande.numCommande %></h3>
+                            <p class="créer"><%= commande.createdAt.toDateString()%></p>
+                            <%cl.forEach(client =>{ %>
+                                <%if(client.id==commande.client){ %>
+                                    <p class="client"><%=client.nom%> <%=client.prenom%></p>
+                                <%}%>
+                            <%})%>
+                            <a class="affiche" href="/commande/<%= commande._id %>" ><img src="../edit.png" alt="edit"></a>
+                        </div>   
+                    <% } %>
+                <% }) %>
+            <% } else { %>
+                <p class="noelmt">Aucune commande n'est enregistré dans la base de données</p>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        let on_Modif_Comm = document.getElementById("R_Comm")
+        on_Modif_Comm.classList.add("on")
+    </script>
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+</html>

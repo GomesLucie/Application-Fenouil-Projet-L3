@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('../partials/head.ejs') %>
+
+<body>
+
+    <%- include('../partials/nav.ejs') %>
+    <div class='page'>
+        <div class="content">
+            <h2 class='nom'>Nom : <%= individu.nom %></h2>
+            <h3 class='prenom'>Prénom : <%= individu.prenom%></h3>
+            <label class='date'>Date de Naissance : <%= individu.dateNaissance.toDateString()%></label>
+            <label class='adresse1'>Adresse : <%= individu.adresseNum%> <%= individu.adresseType%> </label>
+            <label class='adresse2'> <%= individu.adresseCode%> <%= individu. adresseVille%> </label>
+            <label class='categoPro'>Catégorie Professionnel : <%= individu.categoriePro%> </label>
+            <label class='tel'>Téléphone : <%= individu.numeroTel%></label>
+            <% if(individu.adresseMail!=""){%>
+                <label>Adresse e-mail : <%= individu.adresseMail%></label>
+            <%}%>
+        </div>
+    </div>*
+    
+    }
+    <%- include('../partials/footer.ejs') %>
+    
+</body>
+</html>

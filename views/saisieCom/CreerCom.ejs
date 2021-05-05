@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('../partials/head.ejs') %>
+
+<body>
+ 
+    <%- include('../partials/nav.ejs') %>
+
+    <%- include('../partials/barreSaisieCom.ejs') %>
+
+    <div class="page"  >
+        <form action="/creerCom" method="POST" id='choix'>
+            <label class='titre'>Individu
+            <select name="client" id="" required>
+                <option value="" disabled selected>choisir 1 individu</option>
+                <% individus.forEach(individu =>{ %>
+                    <%if(individu.statut!="Client interdit") { %>
+                        <option label="<%= individu.nom %> <%= individu.prenom %>" value='<%=individu.id%>'> </option>
+                    <% } %>
+                <% }) %>
+            </select>  </label> 
+            <input class="buttNewI" id='buttonIndiv' type='button' value="Nouvel individu" onclick="location.href='/ajoutInd';">
+            <label class='titre'>Article(s): <input id='ajout' type='button' value='+' placeholder='+' onclick='ajout_Article()'><input id='suppr' class='hidden' type='button' value='-' placeholder='-' onclick='enlever_Article()'></label>
+            <div id='articles'>
+                <input class='numberArt' type='button' value=1 >
+                <label class='ref'>Désignation
+                <select name="articles" id="" required>
+                    <option value="" disabled selected>choisir 1 article</option>
+                    <% articles.forEach(article =>{ %>
+                        <option label="<%= article.designation %>" value="<%=article.id%>"></option>
+                    <% }) %>
+                </select></label>
+                <label class='quant'>Quantité <input type='number' min='1' max='999' name='quantite' required></label>
+            </div>
+            <label class='titre'>Réglement:</label>
+            <label class='modeChq'><input id='cheque'  type='checkbox' onclick='paiementCheque()' name='pCheque'>Chèque</label>
+            <label class='modeCarte'><input id='carte' type='checkbox' onclick='paiementCarte()' name='pCarte'>Carte Bancaire</label>
+            <div id='paiementElements'></div> 
+            <input type='submit' value='Créer la commande'>
+        </form>
+        
+    </div>
+
+    <script>
+        let on_New_Comm = document.getElementById("New_Comm")
+        on_New_Comm.classList.add("on")
+        const suppr = document.getElementById('suppr');
+        const ajout = document.getElementById('ajout');
+        const articles = document.getElementById('articles');
+
+        ///fonctions onclick:
+        function ajout_Article(){
+            console.log("j'ajoute");
+            const nbArt = document.getElementsByClassName("numberArt").length+1;
+            if(nbArt>1){
+                suppr.classList.remove('hidden')
+            }
+            articles.insertAdjacentHTML('beforeend',"<input class='numberArt' type='button' value="+nbArt+"><label class='ref'>Désignation <select name='articles' id='' required> <option value='' disabled selected>choisir 1 article</option>+<% articles.forEach(article =>{ %><option label='<%= article.designation %>' value='<%=article.id%>'> </option><% }) %>+</select> </label> <label>Quantité <input type='number' min='1' max='999'name='quantite' required></label>")
+        }
+        
+        function enlever_Article(){
+            const nbArt = document.getElementsByClassName("numberArt").length;
+            for(let i=0;i<3;i++){
+                articles.removeChild(articles.lastElementChild);
+            }
+            if(nbArt==2){
+                suppr.classList.add('hidden')
+            }
+        }
+        
+        function paiementCarte(){
+            const carte = document.getElementById('carte')
+            const paiementElements = document.getElementById('paiementElements')
+            const cheque = document.getElementById('cheque')
+            if(carte.checked){
+                cheque.checked=false;
+                paiementElements.innerHTML="";
+                paiementElements.insertAdjacentHTML('beforeend',"<label>Numéro carte <input type='text' name='numeroCarte' placeholder='1234123412341234' pattern='[0-9]{16}'></label><label>Cryptogramme <input type='text' name='crypto' placeholder='123' pattern='[0-9]{3}'></label><label>Date d'expiration <input type='text' name='dateExpiration' placeholder='mm/aa'></label> <label>Titulaire <input type='text' name='titulaire' placeholder='NOM PRENOM' pattern='[A-Z ]*'></label>")
+            }
+            if(!carte.checked){
+                paiementElements.innerHTML="";
+            }
+        }
+        
+        function paiementCheque(){
+            if(cheque.checked){
+                carte.checked=false;
+                paiementElements.innerHTML="";
+                paiementElements.insertAdjacentHTML('beforeend',"<label>Numéro chèque <input type='text' name='numeroCheque' placeholder='1234567' pattern='[0-9]{7}'  ></label><label>Banque <input type='text' name='banque' pattern='[^0-9]*'></label> <label>Valeur <input type='Number' placeholder='0,00€' name='valeur' min='0.00' step='0.01'></label><label id='signature'>Signature <input type='checkbox' name='signature'></label>")
+            }
+            if(!cheque.checked){
+                paiementElements.innerHTML="";
+            }
+        }
+    </script>
+
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+</html>

@@ -12,6 +12,8 @@ body{
     display: grid;
     grid-template-columns: repeat(6,16.66%);
     grid-template-rows: repeat(4,25%);
+    justify-items: center;
+    align-items: center;
 }
 
 .conteneur{
@@ -38,7 +40,7 @@ img{
     grid-area: logo-start/logo-start/logo-end/logo-end;
     margin:auto;
     padding:0px;
-    width: 100%;
+    width: 90%; 
     height: 75%;
 }
 
@@ -71,4 +73,23 @@ img{
     outline: none;
     border-radius: 30px;
     cursor:pointer;
+}
+
+.erreur{
+    grid-area: 4/3/5/5;
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-template-rows: auto;
+    background-color:#f2aeae;
+    border-radius: 10px;
+    align-items: center;
+    padding: 10px 20px;
+    color: #9e0000;
+}
+
+
+.erreur img{
+    grid-area: 1/1/2/2;
+    width: 60px;
+    height: 50px;
 }

@@ -11,12 +11,16 @@ const individuSchema = new Schema({
         required: true
     },
     dateNaissance : {
-        type: String,
+        type: Date,
         required: true
-    }, 
+    },
+    age :{
+        type: Number
+    },
     categoriePro : {
         type : String,
-        required: true
+        required: true,
+        default: 'inconnu'
     },
     adresseNum : {
         type : Number,
@@ -36,11 +40,19 @@ const individuSchema = new Schema({
     },
     adresseInfos : String,
     adresseMail : String,
-    numeroTel : Number,
+    numeroTel :  {
+        type : String,
+        required: true
+    },
     statut : {
         type : String,
         required: true
     },
+    // commandes : {
+    //     type: mongoose.Schema.Types.Array,
+    //     ref: 'Commandes'
+    // },
+    dateProspect :Date,
     cbNum : Number,
     cbDate : String,
     cbCode : Number

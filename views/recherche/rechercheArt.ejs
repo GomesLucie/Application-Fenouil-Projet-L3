@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('../partials/head.ejs') %>
+
+<body>
+
+    <%- include('../partials/nav.ejs') %>
+    <%- include('../partials/barreRecherche.ejs') %>
+
+    <div id='choix'>
+        <h2>Recherche</h2>
+        <form action='/rechercheArt' method='GET' class='search'>
+            <label>Référence<input type="text" name="reference" value="<%= searchOptions.reference %>"></label>
+            <label>Désignation<input type="text" name="designation" value="<%= searchOptions.designation %>"></label>
+            <button type="submit">Recherche</button>
+        </form>
+        <br>
+        <h2>Liste des articles</h2>
+        <div class=liste>
+            <% if (articles.length > 0) { %>
+                <% articles.forEach(article => { %>
+                    <div class="single" >
+                        <a class="affiche" href="/rechercheArt/<%= article._id %>" >
+                        <img height="50" width="50" src="<%= article.imagePath %>">
+                        <p class="reference"><%= article.reference%></p>
+                        <h3 class="designation"><%= article.designation %></h3>
+                        </a>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p class='noelmt'>Aucun article ne correpond à votre recherche.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+</html>

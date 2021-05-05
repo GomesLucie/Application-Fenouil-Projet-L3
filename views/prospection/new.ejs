@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <%- include('../partials/nav.ejs') %>
+            <%- include('../partials/barreProspection.ejs') %>
+
+                <div class="page" id='choix'>
+                    <form action='' method='POST'>
+                        <label class='partie'>Création de cible de routage :</label>
+                        <label>Catégorie socio-professionnelle 
+                <SELECT name='categoriePro' size='1' required>
+                    <OPTION selected disabled >Catégorie
+                    <OPTION>Agriculteurs exploitants
+                    <OPTION>Artisans. commerçants. chefs entreprise
+                    <OPTION>Cadres et professions intellectuelles supérieures
+                    <OPTION>Professions intermédiaires
+                    <OPTION>Employés
+                    <OPTION>Etudiant
+                    <OPTION>Ouvriers
+                    <OPTION>Retraités
+                    <OPTION>Autres    
+                </SELECT>
+            </label>
+                        <label>Age: de <input id="min" type='number' min='0' max='110' name='ageMin' required > à <input type='number' min=getMin() max='110' name='ageMax' required></label>
+                        <label>Département de résidence <input type='number' min='0' name='departementResidence' required> </label>
+                        <label>Clients ? 
+                <SELECT name='client' size='1' required>
+                    <!-- <option selected disabled>  </option> -->
+                    <OPTION>Oui</OPTION>
+                    <OPTION>Non</OPTION>
+                </SELECT>
+            </label>
+                        <label class='partie'>Choix de la publicité :</label>
+                        <label>Type de catalogue </label>
+                        <label>
+                <input id='papier' type='checkbox' onclick='Papier()' name='cataloguePapier'>
+                Catalogue Papier 
+                <label><input id='internet' type='checkbox' onclick='Internet()' name='catalogueInternet'>Canaux internet</label>
+                        </label>
+                        <div id='Catalogue'></div>
+                        <label>Titre* <input type='text' name='titre' required> </label>
+                        <label>Description* <input type='text' name='description' required></label>
+                        <div id="articles"><label>Choix des articles</label>
+                            <input type='button' id="ajout" value='+' placeholder='+' onclick='Ajout_Article()'>
+                            <input type='button' id="suppr" value="-" placeholder=' - ' class="hidden" onclick='Supprimer_Article()'>
+                    <select name="articles" class="numberArt" required>
+                    <option value="" disabled selected>choisir 1 article</option>
+                    <% articles.forEach(article =>{ %>
+                        <option class="art" label="<%= article.designation %>" value=<%=article._id%>></option>
+                    <% }) %>
+                </select>
+                        </div>
+                        <input type='submit' value='Soumettre'>
+                    </form>
+
+                </div>
+                <script>
+                    function getMin() {
+                        return document.getElementById(min).value
+                    }
+
+                    /////////////////////////////////
+                    let on_creer = document.getElementById("creer");
+                    on_creer.classList.add("on");
+                    const articles = document.getElementById('articles');
+                    const suppr = document.getElementById('suppr');
+                    const ajout = document.getElementById('ajout');
+                    //////////////////////////////
+                    function Internet() {
+                        let papierElements = document.getElementById('Catalogue')
+                        if (internet.checked) {
+                            papier.checked = false;
+                            papierElements.innerHTML = "";
+                        }
+                        if (!internet.checked) {
+                            papierElements.innerHTML = "";
+                        }
+                    }
+
+                    function Papier() {
+                        let papierElements = document.getElementById('Catalogue')
+                        if (papier.checked) {
+                            internet.checked = false;
+                            //papierElements.innerHTML="";
+                            papierElements.insertAdjacentHTML('afterbegin', "<select name='typePapier' required><option>Standard</option><option>Supérieur</option><option>Economique</option></select>")
+                        }
+                        if (!papier.checked) {
+                            papierElements.innerHTML = "";
+                        }
+                    }
+                    ////////////////////////////////
+                    function Ajout_Article() {
+                        const nbArt = document.getElementsByClassName("numberArt").length + 1;
+                        articles.insertAdjacentHTML('beforeend', "<select name='articles' class='numberArt art' required><option value='' disabled selected>choisir 1 article</option><% articles.forEach(article =>{ %><option label='<%= article.designation %>' value='<%= article._id %>'></option><% }) %></select>")
+                        if (nbArt > 1) {
+                            suppr.classList.remove('hidden')
+                        }
+                        if (nbArt >= 5) {
+                            ajout.classList.add('hidden')
+                        }
+                    }
+
+                    function Supprimer_Article() {
+                        const nbArt = document.getElementsByClassName("numberArt").length;
+                        articles.removeChild(articles.lastChild)
+                        ajout.classList.remove('hidden')
+                        if (nbArt == 2) {
+                            suppr.classList.add('hidden')
+                        }
+                    }
+                    //////////////////////////////////////
+                </script>
+
+                <%- include('../partials/footer.ejs') %>
+
+    </body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <%- include('../partials/nav.ejs') %>
+        <%- include('../partials/barreAdminRef.ejs') %>
+
+            <div class="page" id='choix'>
+                <form action='/referentielModifArticle' method='GET' class='ReshearchArt'>
+                    <label>Référence</label>
+                    <input type="text" name="reference" value="<%= searchOptions.reference %>">
+                    <label>Désignation</label>
+                    <input type="text" name="designation" value="<%= searchOptions.designation %>">
+                    <input type='submit' value='Rechercher'>
+                </form>
+                <div class="place">
+                    <div class="titretab">
+                        <p>Image</p>
+                        <p>Référence</p>
+                        <p>Désignation</p>
+                        <p>Modifier</p>
+                    </div>
+                </div>
+                <div class=liste>
+                    <% if (articles.length > 0) { %>
+                        <% articles.forEach(article => { %>
+                            <div class="single" >
+                                <img height="50" width="50" src="<%= article.imagePath %>">
+                                <p class="reference"><%= article.reference%></p>
+                                <h3 class="designation"><%= article.designation %></h3>
+                                <a class="affiche" href="/referentielArticle/<%= article._id %>" ><img src="../edit.png" alt="edit"></a>
+                            </div>
+                        <% }) %>
+                    <% } else { %>
+                        <p class='noelmt'>Aucun article ne correpond à votre recherche.</p>
+                    <% } %>
+                </div>
+            </div>
+
+            <script>
+                let on_Modif_Article = document.getElementById("Modif_Art");
+                on_Modif_Article.classList.add("on");
+            </script>
+
+            <%- include('../partials/footer.ejs') %>
+
+    </body>
+
+</html>

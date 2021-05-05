@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('../partials/head.ejs') %>
+
+<body>
+
+    <%- include('../partials/nav.ejs') %>
+    <%- include('../partials/barreProspection.ejs') %>
+    
+    <div class="page" >
+        <div class="place">
+            <p>Cible de Routage à supprimer</p>            
+        </div>
+        <div class="liste">
+            <% if (cibleDeRoutages.length > 0) { %>
+                <% cibleDeRoutages.forEach(cible => { %>
+                    <%if(cible.refus) { %>
+                        <div class="single">
+                            <a class='cibleR' href="./ciblederoutageRefuses/<%= cible._id %>">
+                            <h3 class="nom"><%= cible.titre %></h3></a>
+                            <p class="date"><%= cible.dateProspection.toDateString() %></p>
+                        </div>
+                    <%} %>
+                <% }) %>
+            <% } else { %>
+                <p class='noelmt'>Pas de publicité à envoyer ou en attente de validation</p>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        let on_modif = document.getElementById("Modif")
+        on_modif.classList.add("on");
+    </script>
+
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+</html>

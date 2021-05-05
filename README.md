@@ -1,17 +1,61 @@
-# Projet Fenouil
-Dévelopement de l'application FENOUIL pour la société DÉCO-PERSO par l'équipe MimirDevelopement.
+# Utilisation de l'application
 
-# Présentation de la société DÉCO-PERSO
-La société DÉCO-PERSO vend du matériel de bricolage et de décoration à des particuliers. 
-En raison du confinement et malgré sa notoriété, le chiffre d'affaires de l’entreprise a baissé. Elle souhaite donc améliorer et remodeler son système de prise et de suivi des commandes, via l’application nommée “FENOUIL”, pour faciliter ses démarches. La société espère ainsi gagner en efficacité et augmenter ses revenus en touchant un plus large public.
+## Hébergement en ligne
+Vous pouvez essayer directement l'application disponible en ligne sur le site d'hébergement Scalingo en cliquant sur le lien suivant : 
+https://fenouildecoperso.osc-fr1.scalingo.io/. (lien valable jusqu'au 11 mai 2021)
 
-Quatre équipes de la société utiliserons cette application: le département de "Prospection" qui réalise les cibles de routages, les assistants de saisies qui enregistrent et/ou valident les commandes reçues, les gestionnaires administratifs qui traitent et envoient les couriers d'anomalies et enfin le responsable de données(ou administrateur de données) qui gère le référentiel des individus et des articles.
 
-# Présentation de la team MimirDevelopement
-La team s’appelle MimirDeveloppement, en référence au dieu nordique de la connaissance et de l’intelligence. Nous sommes une équipe de développeuses, composé de 5 membres : Lucie GOMES, Louise WEBER, Marwa MOHAMED, Jiou LEE et Astrid WINKLER (cheffe de projet).
+## Connexion à l'application
+Pour se connecter à l'application il faut avoir un identifiant et un mot de passe.
+Voici la liste des couples identifiants/mots de passe qui modélisent les différents rôles au sein de l'entreprise :
 
-Astrid et Marwa sont nos deux principales développeuses, Jiou et Lucie les deux testeuses et Louise s'occupe de l'assurance qualité. De plus, Jiou, Louise et Lucie s'occupent également de toute la partie création des designs et croquis pour l'application et les logos.
 
-Chacunes ont des rôles différents au sein de la team, mais nous sommes toutes en 3e année de Double Licence Sciences de la Vie / Informatique. Travaillant ensemble depuis 3 ans sur différents projets, nous sommes une équipe soudée et nous avons conscience des atouts de chacune d’entre nous. 
+- Amdministrateur référentiel : Administration du référentiel
+{identifiant: "admin", mdp: "admin"}
+- Gestionnaire administratif : Anomalies et envoie de courrier
+{identifiant: "gest", mdp: "gest"}
+- Assistant de saisie : Saisie des commandes
+{identifiant: "saisie", mdp: "saisie"}
+- Département de prospection : Prospection
+{identifiant: "prosp", mdp: "prosp"}
+- Directeur de la stratégie : valide cible de routage
+{identifiant: "strat", mdp: "strat"}
+- Responsable de routage : lance envoi des publicités
+{identifiant: "pub", mdp: "pub"}
+- Directeur de l'entreprise (accès à tous les modules, intégralité de l'application)
+{identifiant: "global", mdp: "global"}
 
-# Utilisation de l'Application Fenouil
+
+# Téléchargement du projet
+## Module à installer
+- Posséder NodeJS
+- Avoir installé un environnement de développement (ex: Visual Studio Code)
+- Ouvrir app.ejs
+- Taper dans le terminal à la suite: npm init (lors du choix des options tapez Entrée) / npm install / npm install -g nodemon
+ 
+- Taper "nodemon app" dans le terminal pour lancer l'application
+
+## Erreur possible
+".\script.ps1 : Impossible de charger le fichier C:\Users\WindowsFacile\Desktop\script.ps1, car l’exécution de scripts est désactivée sur ce système. Pour plus d’informations, consultez about_Execution_Policies à l’adresse https://go.microsoft.com/fwlink/?LinkID=135170.
+Au caractère Ligne:1 : 1
++ .\script.ps1
++ ~~~~~~~~~~~~~~
++ CategoryInfo : Erreur de sécurité : (:) [], PSSecurityException
++ FullyQualifiedErrorId : UnauthorizedAccess"
+
+Pour résoudre ce problème:
+  - ouvrir le "Windows PowerShell"
+  - Taper Set-ExecutionPolicy Unrestricted puis appuyer sur Entrée
+  -  indiquez "O" pour Oui et appuyez sur Entrée
+
+
+# Présentation de la Team
+L'équipe est composé de 5 étudiantes toutes en L3 Double Licence Science De la Vie - Informatique à l'Université d'Evry Val d'Essonne.
+
+Astrid WINKLER était chef de projet et principale développeuse pour la partie Connexion de l'application, mise en place de la base de donnée (BDD) MongoDB, lien entre la BDD et l'application et les modules "Saisie des Commandes" et "Administration du Référentiel".
+Jiou LEE était principalement testeuse mais à également beaucoup contribuée pour la conception des croquis de l'interface graphique et le codage du CSS de l'Application.
+Louise WEBER était testeuse, assurait l'assurance qualité (vis à vis du planning et du cahier des charges) et a également participé à une grande partie de l'interface graphique de l'application (CSS et croquis).
+Lucie GOMES était testeuse mais également développeuse sur le module "Saisie des Commandes", pour les fonctionnalités de Recherches dans le module "Administration du Référentiel" et le début du module "Gestion des Anomalies". 
+Marwa MOHAMED était développeuse sur une partie du module "Saisie des Commandes" mais surtout sur le module "Prospection".
+
+Le projet avait pour date butoir le 14/04/2021, à cette date là, le module "Gestion des Anomalies" n'était pas fonctionnel.

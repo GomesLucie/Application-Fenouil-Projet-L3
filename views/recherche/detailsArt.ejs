@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <%- include('../partials/head.ejs') %>
+
+<body>
+
+    <%- include('../partials/nav.ejs') %>
+    <div class='page'>
+        <div class="content">
+            <img height="150" width="150" src="<%= article.imagePath %>">
+            <h2 class='ref'>Référence : <%= article.reference %></h2>
+            <h3 class='design'>Désignation : <%= article.designation%></h3>
+            <label class='desc'>Description : <%= article.description%></label>
+        </div>
+    </div>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

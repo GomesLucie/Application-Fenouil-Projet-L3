@@ -1,29 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-    <%- include('./partials/head.ejs') %>
 
-<body>
+<%- include('./partials/head.ejs') %>
 
-    <%- include('./partials/nav.ejs') %>
-    <div class="barre">
-        <input class="Recherche_Anomalie" type="submit" value="Rechercher une anomalie" onclick="Recherche_Anomalie()">
-        <input class="courrier" type="submit" value="Envoyer un courrier" onclick="courrier()">
-    </div>
-    <script>
-        function Recherche_Anomalie(){
-            choix.innerHTML= "";
-            choix.insertAdjacentHTML('afterbegin',"")
-        }
-        function courrier(){
-            choix.innerHTML= "";
-            choix.insertAdjacentHTML('afterbegin',"")
-        }
-    </script>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class='page'>
+            <form action="/anomalie/<%= anomalie._id %>?_method=PUT" method='POST'>
+                <div class="content">
+                    <h3 class='commande'>Numéro de commande : <%= lacom.numCommande %></h3>
+                    <h3 class='client'>Désignation : <%= leclient.nom%> <%= leclient.prenom%></h3>
+                    <label class='anomalies'>Description : <%= anomalie.anomalies%></label>
+                </div>
+                <input type='submit' class='update' value='Modifier'>
+                <input type="button" value="Annuler" onclick="location.href='/referentielModifArticle';">
+            </form>
+        </div>
+        <%- include('./partials/footer.ejs') %>
 
-    <div class="page" id='choix'></div>
+    </body>
 
-    <%- include('./partials/footer.ejs') %>
-
-</body>
 </html>

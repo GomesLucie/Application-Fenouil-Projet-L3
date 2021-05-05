@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('../partials/head.ejs') %>
+
+    <body>
+
+        <%- include('../partials/nav.ejs') %>
+        <%- include('../partials/barreAdminRef.ejs') %>
+
+            <div class="page" id='choix'>
+                <form action='/referentielModifIndividu' method='GET' class='ReshearchArt'>
+                    <label>Nom</label>
+                    <input type="text" name="nom" value="<%= searchOptions.nom %>">
+                    <label>Prénom</label>
+                    <input type="text" name="prenom" value="<%= searchOptions.prenom %>">
+                    <label>Date de Naissance</label>
+                    <input type="date" name="dateNaissance" value="<%= searchOptions.dateNaissance %>">
+                    <input type='submit' value='Rechercher'>
+                </form>
+                <div class="place">
+                    <div class="titretab">
+                        <p>NOM/Prénom</p>
+                        <p>Date de Naissance</p>
+                        <p>Statut</p>
+                        <p>Modifier</p>
+                    </div>
+                </div>
+                <div class="liste">
+                    <% if (individus.length > 0) { %>
+                        <% individus.forEach(individu => { %>
+                            <%if(!individu.valide) { %>
+                                <div class="single" >
+                                    <h3 class="nom"><%= individu.nom %> <%= individu.prenom %></h3>
+                                    <p class="dateNaissance"><%= individu.dateNaissance.toDateString()%></p>
+                                    <p class="statut"><%= individu.statut%></p>
+                                    <a class="affiche" href="/referentielIndividu/<%= individu._id %>" ><img src="../edit.png" alt="edit"></a>
+                                </div>   
+                            <% } %>
+                        <% }) %>
+                    <% } else { %>
+                        <p class='noelmt'>Aucune personne ne correspond à votre recherche.</p>
+                    <% } %>
+                </div>
+            </div>
+
+            <script>
+                let on_Modif_Individu = document.getElementById("Modif_Ind");
+                on_Modif_Individu.classList.add("on");
+            </script>
+
+            <%- include('../partials/footer.ejs') %>
+
+    </body>
+
+</html>
